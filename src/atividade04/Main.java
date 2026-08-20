@@ -2,8 +2,8 @@ package atividade04;
 
 public class Main {
 	public static void main(String[] args) {
-		Contador contadorBaixo = new Contador(1, 1);
-		Contador contadorAlto = new Contador(2, 10);
+		Contador contadorBaixo = new Contador("Baixo", 1);
+		Contador contadorAlto = new Contador("Alto", 10);
 		
 		System.out.println("Iniciando os contadores...\n");
 		

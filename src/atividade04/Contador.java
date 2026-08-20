@@ -3,27 +3,28 @@ package atividade04;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Contador extends Thread {
-	private int id;
+	private String nome;
 	private int prioridade;
 	
-	public Contador(int id, int prioridade) {
-		this.id = id;
+	public Contador(String nome, int prioridade) {
+		this.nome = nome;
 		this.prioridade = prioridade;
 	}
 	
 	public void run() {
 		setPriority(prioridade);
 		
+		int tempoPausa = 3;
+		
 		for(int i = 0; i <= 10; i++) {
-			System.out.println("Contador " + id + " - Contagem: " + i);
+			System.out.println("Contador " + nome + " - Contagem: " + i);
 			
-			int valorSorteio = ThreadLocalRandom.current().nextInt(1, 11);
+			double valorSorteio = ThreadLocalRandom.current().nextDouble();
 			
-			if(valorSorteio == 5) {
-				System.out.println("\nPausa de 3 segundos no Contador " + id + "\n");
-				
+			if(valorSorteio < 0.1) {
+				System.out.println("\nPausa de " + tempoPausa + " segundos no Contador " + nome + "\n");
 				try {
-					sleep(3000);
+					sleep(tempoPausa * 1000);
 				} catch(InterruptedException e) {
 					e.printStackTrace();
 				}

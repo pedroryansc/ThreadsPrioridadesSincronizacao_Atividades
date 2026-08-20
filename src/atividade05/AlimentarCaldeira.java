@@ -1,18 +1,31 @@
 package atividade05;
 
+import java.util.Random;
+
 public class AlimentarCaldeira extends Thread {
+	private Caldeira caldeira;
+	
+	public AlimentarCaldeira(Caldeira caldeira) {
+		this.caldeira = caldeira;
+	}
+	
 	public void run() {
 		setPriority(Thread.MIN_PRIORITY);
 		
-		System.out.println("Alimentando caldeira...");
+		Random sorteador = new Random();
 		
-		try {
-			sleep(3000);
+		while(true) {
+			if(caldeira.isLigada()) {
+				int aumentoTemp = sorteador.nextInt(300) + 1;
+				
+				caldeira.alimentar(aumentoTemp);
+			}
 			
-			System.out.println("Caldeira alimentada!");
-		} catch(InterruptedException e) {
-			System.out.println("[!] Houve algo de errado ao alimentar a caldeira");
-			e.printStackTrace();
+			try {
+				Thread.sleep(1000);
+			} catch(InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
